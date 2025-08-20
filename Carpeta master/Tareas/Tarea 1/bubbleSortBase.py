@@ -23,6 +23,11 @@ def bubble_sort(hilera, tamano) :
 def main():
     #Aqui se solicita al usuario si desea ver las hileras ya que imprimirlas abarca mucho espacio (funciona para pruebas e informacion general)
     ver_hileras = input("Desea ver los contenidos de las hileras antes y despues de la ejecucion de Bubble Sort?   (s/n): "  ).strip().lower() == "s"
+    
+    tiempos_ejecucion10 = []
+    tiempos_ejecucion100 = []
+    tiempos_ejecucion1k = []
+    
     #Itera 5 veces para obtener los tiempos de 5 ejecuciones
     for z in range(5) : 
         print("Iteracion numero: ", z + 1)
@@ -30,6 +35,7 @@ def main():
         #Hace 3 hileras de 10, 100 y 1000 elementos aleatorios con enteros del 1 al 1000
         #Imprime el estado de estas hileras antes y despues de aplicar bubble_sort si se escogio imprimirlas
         #Imprime el tiempo de ejecucion del algoritmo en la hilera actual
+        #Guarda cada tiempo por iteracion para calcular el promedio final
         print("Hilera de 10 numeros al azar antes y despues de aplicar bubble sort:")
         hilera10 = hilera_numeros_aleatorios(10, 1, 1000)
         if ver_hileras:
@@ -40,6 +46,8 @@ def main():
         if ver_hileras:
             print(hilera10)
         print("El tiempo de ejecucion de Bubble Sort en la hilera de 10 elementos fue de: ", format(fin - inicio), "segundos")
+        tiempo10 = fin - inicio
+        tiempos_ejecucion10 .append(tiempo10)
         print()
         print("Hilera de 100 numeros al azar antes y despues de aplicar bubble sort:")
         hilera100 = hilera_numeros_aleatorios(100, 1, 1000)
@@ -51,6 +59,8 @@ def main():
         if ver_hileras:
             print(hilera100)
         print("El tiempo de ejecucion de Bubble Sort en la hilera de 100 elementos fue de: ", format(fin - inicio), "segundos")
+        tiempo100 = fin - inicio
+        tiempos_ejecucion100.append(tiempo100)
         print()
         print("Hilera de 1000 numeros al azar antes y despues de aplicar bubble sort:")
         hilera1k = hilera_numeros_aleatorios(1000, 1, 1000)
@@ -62,7 +72,15 @@ def main():
         if ver_hileras:
             print(hilera1k)
         print("El tiempo de ejecucion de Bubble Sort en la hilera de 1000 elementos fue de: ", format(fin - inicio), "segundos")
+        tiempo1k = fin - inicio
+        tiempos_ejecucion1k.append(tiempo1k)
         print()
     
+    #Impresion de promedios    
+    print("Este fue el tiempo promedio de cada hilera despues de 5 ejecuciones: ")
+    print(f"Hilera de 10: { sum(tiempos_ejecucion10) /len(tiempos_ejecucion10):.6f} segundos")
+    print(f"Hilera de 100: { sum(tiempos_ejecucion100) / len(tiempos_ejecucion100):.6f} segundos")
+    print(f"Hilera de 1000: { sum(tiempos_ejecucion1k) / len(tiempos_ejecucion1k):.6f} segundos")
+
 if __name__ == "__main__":
     main()
