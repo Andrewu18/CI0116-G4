@@ -1,39 +1,35 @@
 import random
 import time
 
-# Algoritmo Bubble Sort basado en el pseudocódigo dado
-def bubble_sort(A):
-    n = len(A)
-    for i in range(n):  # for i = 0 to n-1
-        for j in range(n - i - 1):  # for j = 0 to n - i - 1
-            if A[j] > A[j + 1]:  # if A[j] > A[j+1]
-                A[j], A[j + 1] = A[j + 1], A[j]  # exchange
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break
 
-# Función para ejecutar las pruebas
-def run_tests():
-    sizes = [10, 100, 1000]  # tamaños de arreglos
-    num_runs = 5  # número de ejecuciones por cada tamaño
-    
-    for size in sizes:
-        print(f"\nTamaño del arreglo: {size}")
-        tiempos = []
-        
-        for run in range(1, num_runs + 1):
-            # Crear arreglo aleatorio
-            arr = [random.randint(1, 1000) for _ in range(size)]
-            
-            # Medir tiempo
-            start = time.perf_counter()
-            bubble_sort(arr)  # ordenar con Bubble Sort
-            end = time.perf_counter()
-            
-            tiempo = end - start
-            tiempos.append(tiempo)
-            
-            print(f"Ejecución {run}: {tiempo:.6f} segundos")
-        
-        promedio = sum(tiempos) / num_runs
-        print(f"Promedio: {promedio:.6f} segundos")
+def medir_tiempo(size, repeticiones=5):
+    tiempos = []
+    for _ in range(repeticiones):
+        arr = [random.randint(0, 10000) for _ in range(size)]
+        inicio = time.perf_counter()
+        bubble_sort(arr)
+        fin = time.perf_counter()
+        tiempos.append(fin - inicio)
+    return tiempos, sum(tiempos) / repeticiones
+
+def main():
+    tamaños = [10, 100, 1000]
+    for t in tamaños:
+        tiempos, promedio = medir_tiempo(t)
+        print(f"\nTamaño {t}:")
+        for i, tiempo in enumerate(tiempos, 1):
+            print(f"  Ejecución {i}: {tiempo:.6f} segundos")
+        print(f"  Promedio: {promedio:.6f} segundos")
 
 if __name__ == "__main__":
-    run_tests()
+    main()
