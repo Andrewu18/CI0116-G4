@@ -1,0 +1,67 @@
+Merge sort;
+
+Utiliza dos funciones separadas, merge sort es un algoritmo recursivo que divide los datos de mitad en mitad hasta que eventualmente solo tiene tamano 1, despues el algoritmo
+junta estas mitades de 1 digito de menor a mayor, para realizar esto en el orden mencionado este pseudocodigo tiene dos funciones llamadas mergeSort y merge.
+
+A = arreglo
+i = indice del principio del arreglo
+m = indice del medio del arreglo
+f = indice del final del arreglo 
+
+Pseudocidigo para mergeSort, este divide en dos el arreglo A recursivamente hasta mue no pueda dividir mas, despues llama a la funcion merge
+
+mergeSort (A, i, f)
+
+    if (i < f)
+
+        m = [(i + f) / 2]
+        mergeSort (A, i, m)
+        mergeSort (A, m + 1, f)
+        merge (A, i, f, m)
+        return merge
+
+
+
+Pseudocodigo para merge, este usa un arreglo auxiliar y agarra los datos del arreglo dividido y de dos en dos, junta las mitades de 1 ordenando estas de menor a mayor dentro de la comparacion
+de los dos datos.
+Despues, realiza esto otra vez de dos en dos, pero con los arreglos de tamano 2 anteriores por lo cual ahora tendra 4 elementos ordenados en cada una de las uniones, y asi 
+procede hasta ordenar el arreglo.
+
+Ai = subarreglo izmuierdo
+Ad = subarreglo derecho
+merge (A, i, f, m)
+    Ai = m - i + 1
+    Ad = f - m
+    I[1 hasta Ai + 1]
+    D[1 hasta Ad + 1]
+
+    for x = 1 to Ai
+        I[x] = A[i + x - 1]
+
+
+    for y = 1 to Ad
+        D[y] = A[m + y]
+
+    
+    I[Ai + 1] = infinito
+    D[Ad + 1] = infinito
+
+
+    x = 1
+    y = 1
+
+
+    for k = i to f
+
+        if I[x] ≤ D[y] then
+            A[k] = I[x]
+            x = x + 1
+
+        else
+            A[k] = D[y]
+            y = y + 1
+
+    
+
+        
+        
