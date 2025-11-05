@@ -8,6 +8,10 @@
 
 
 //Funcion auxiliar
+
+//Tiene un problema en que la funcion base en mediacion no colecta los caracteres especiales como ñ o tildes, el enunciado no hace mencion de esto
+// se le pregunto al profesor y no se obtuvo respuesta, por lo que se deja asi
+
 std::string limpiarPalabra(const std::string& s)
 {
     std::string limpia;
